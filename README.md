@@ -4,7 +4,7 @@ Currently officially supports the German versions of Ruby/Sapphire and FireRed/L
 Support for Emerald is absolutely planned and support for other languages will eventually be added as well.
 
 ## Wild
-- Edit the script for desired species in dex number (c.f. https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_index_number_(Generation_III))
+- Edit the script for desired species in dex number (c.f. [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_index_number_(Generation_III)))
 - Fill in your game version ("rs", "frlg" or [eventually] "e")
 - Run the script when the player is in the grass, The bot will walk to left first
 
