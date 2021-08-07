@@ -30,7 +30,7 @@ function flee()
 	end
 	press({A = true}, 5); press({A = false}, 5)
 	while memory.readword(anim_wait) ~= battle_choice_const do
-		emu.frameadvance()
+		press({A = true}, 5); press({A = false}, 5)
 	end
 	while memory.readbyte(cursor) ~= 1 do
 		press({right = true}, 2); press({right = false}, 2)
