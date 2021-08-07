@@ -1,5 +1,5 @@
 -- Enter parameters here --
-local desired_letters = {'C','H','U','O'}
+local desired_letters = {'U','O'}
 -- End of parameters --
 
 rshift = bit.rshift
