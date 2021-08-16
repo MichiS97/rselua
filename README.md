@@ -5,7 +5,7 @@ Support for Emerald is absolutely planned and support for other languages will e
 
 ## Wild
 - Edit the script for desired species in dex number (c.f. [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_index_number_(Generation_III)))
-- Run the script when the player is in the grass, The bot will walk to left first
+- Run the script when the player is in the grass, The bot will walk left first
 
 ## Breeding
 - Currently only supports FRLG and RS
