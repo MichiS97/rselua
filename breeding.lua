@@ -1,6 +1,21 @@
--- Enter parameters here --
-local version = "frlg" -- choose between rs, e and frlg
--- End of parameters --
+function read_str(address)
+	text = ""
+	for i = 0,7 do
+		text = text .. string.char(memory.readbyte(address+i))
+	end
+	return text
+end
+
+local version
+
+v_str = read_str(0x080000A8)
+if v_str == "FIREBPRD" or v_str == "LEAFBPGD" then
+	version = "frlg"
+elseif v_str == "RUBYAXVD" or v_str == "SAPPAXPD" then
+	version = "rs"
+else
+	version = "unknown"
+end
 
 local pidpointer
 local pid_addr
