@@ -2,7 +2,7 @@
 local version = "frlg" -- choose between rs, e and frlg
 -- End of parameters --
 
-local pidpointer = 0x02039894
+local pidpointer
 local pid_addr
 local pidoffset
 local egglowpid
@@ -10,6 +10,9 @@ local x_coord
 local y_coord
 local coord_base
 local map_offset
+local left_x
+local right_x
+local y_bound
 
 function press(button, delay)
     i = 0
@@ -29,6 +32,20 @@ if version == 'frlg' then
 	x_offset = 0
 	y_offset = 2
 	map_offset = 5
+	left_x = 9
+	right_x = 28
+	y_bound = 15
+end
+if version == 'rs' then
+	pidpointer = 0
+	pidoffset = 0x020287E8
+	coord_base = 0
+	x_offset = 0x02025734
+	y_offset = 0x02025736
+	map_offset = 5
+	left_x = 0x1F
+	right_x = 0x3B
+	y_bound = 6
 end
 
 function walk_x(x)
@@ -52,15 +69,24 @@ end
 state = savestate.create()
 
 while true do
-	pid_addr = math.floor(memory.readdwordunsigned(pidpointer) + pidoffset)
+	if pidpointer ~= 0 then
+		pid_addr = math.floor(memory.readdwordunsigned(pidpointer) + pidoffset)
+	else
+		pid_addr = pidoffset
+	end
 	egglowpid = memory.readwordunsigned(pid_addr)	
-	x_coord = math.floor(memory.readdwordunsigned(coord_base) + x_offset)
-	y_coord = math.floor(memory.readdwordunsigned(coord_base) + y_offset)
+	if coord_base ~= 0 then
+		x_coord = math.floor(memory.readdwordunsigned(coord_base) + x_offset)
+		y_coord = math.floor(memory.readdwordunsigned(coord_base) + y_offset)
+	else
+		x_coord = x_offset
+		y_coord = y_offset
+	end
 	while egglowpid % 0x10000 <= 0 do
 		egglowpid = memory.readwordunsigned(pid_addr)	
-		walk_y(15)
-		walk_x(9)
-		walk_x(28)
+		walk_y(y_bound)
+		walk_x(left_x)
+		walk_x(right_x)
 		print("Walking..")
 		print(string.format("PID addr.: %X \nPID: %X", pid_addr,egglowpid))
 	end
