@@ -13,6 +13,8 @@ if v_str == "FIREBPRD" or v_str == "LEAFBPGD" then
 	version = "frlg"
 elseif v_str == "RUBYAXVD" or v_str == "SAPPAXPD" then
 	version = "rs"
+elseif v_str == "EMERBPED" then
+	version = "e"
 else
 	version = "unknown"
 end
@@ -61,6 +63,17 @@ if version == 'rs' then
 	left_x = 0x1F
 	right_x = 0x3B
 	y_bound = 6
+end
+if version == 'e' then
+	pidpointer = 0x0203BC78
+	pidoffset = 0x988
+	coord_base = 0x03005D8C
+	x_offset = 0x0
+	y_offset = 0x02
+	map_offset = 5
+	left_x = 0x1F
+	right_x = 0x3B
+	y_bound = 7
 end
 
 function walk_x(x)
